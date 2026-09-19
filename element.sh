@@ -16,9 +16,11 @@ JOIN types t ON p.type_id = t.type_id
 WHERE e.atomic_number::text = '$1' OR e.symbol = '$1' OR e.name = '$1';")
 
 if [[ -z $ELEMENT_INFO ]]
+
 then
   echo "I could not find that element in the database."
 else
+
   IFS="|" read ATOMIC_NUMBER SYMBOL NAME TYPE MASS MELTING BOILING <<< "$ELEMENT_INFO"
   echo "The element with atomic number $ATOMIC_NUMBER is $NAME ($SYMBOL). It's a $TYPE, with a mass of $MASS amu. $NAME has a melting point of $MELTING celsius and a boiling point of $BOILING celsius."
 fi
